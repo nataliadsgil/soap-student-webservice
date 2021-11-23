@@ -6,12 +6,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XmlSchema.xsd to edit this te
 
 <xs:schema version="1.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://localhost/soap-student-webservice"
+           targetNamespace="http://localhost/soap-student-webservice"
            elementFormDefault="qualified">
     
-    <!--Listar todos os estudantes-->
-    <xs:element name="getAllStudentsRequest" />
+    <!--Listar todos os estudantes-->    
+    <xs:element name="getAllStudentsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     
     <xs:element name="getAllStudentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!--Listar informações sobre um estudante específico por RA-->
+    <xs:element name="getStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RA" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="getStudentResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="student" type="tns:student"/>
@@ -19,11 +43,64 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XmlSchema.xsd to edit this te
         </xs:complexType>
     </xs:element>
     
+    <!--Cadastrar um novo estudante-->
+    <xs:element name="insertNewStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nome" type="xs:string"/>
+                <xs:element name="curso" type="xs:string"/>
+                <xs:element name="semestre" type="xs:int"/>
+                <xs:element name="RA" type="xs:string"/>
+                <xs:element name="CPF" type="xs:string"/>
+                <xs:element name="cidade" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     
-    <xs:element name="getStudentRequest">
+    <xs:element name="insertNewStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!--Editar estudante-->
+    <xs:element name="updateStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nome" type="xs:string"/>
+                <xs:element name="curso" type="xs:string"/>
+                <xs:element name="semestre" type="xs:int"/>
+                <xs:element name="RA" type="xs:string"/>
+                <xs:element name="CPF" type="xs:string"/>
+                <xs:element name="cidade" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="updateStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    <!--Remover estudante-->
+    <xs:element name="removeStudentRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="RA" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="removeStudentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
