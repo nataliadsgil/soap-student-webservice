@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XmlSchema.xsd to edit this template
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    
+    <!--Listar todos os estudantes-->
+    <xs:element name="getAllStudentsRequest" />
+    
+    <xs:element name="getAllStudentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="tns:student"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    <xs:element name="getStudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RA" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    <!--Criando tipo Student-->
+    <xs:complexType name="student">
+        <xs:sequence>
+            <xs:element name="nome" type="xs:string"/>
+            <xs:element name="curso" type="xs:string"/>
+            <xs:element name="semestre" type="xs:int"/>
+            <xs:element name="RA" type="xs:string"/>
+            <xs:element name="CPF" type="xs:string"/>
+            <xs:element name="cidade" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
